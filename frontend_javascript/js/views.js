@@ -1,7 +1,7 @@
 export const adsView = (advertisement) => {
-    return `<div class="ads">
-    <strong class="name">${advertisement.name}</strong>
-    <p class="precio">${advertisement.precio}</p>
-    <p class="compra">${advertisement.compra}</p>
+    return `<div class="post">
+    <strong class="author">${advertisement.author}</strong>
+    <p class="message">${advertisement.message}</p>
+    <time datetime="${advertisement.date}">${advertisement.date}</time>
 </div>`;
 }
