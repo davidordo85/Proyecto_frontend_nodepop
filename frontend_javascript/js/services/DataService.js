@@ -3,12 +3,14 @@ const url = 'https://gist.githubusercontent.com/kasappeal/a8724e3f1c75ba515a8d95
 
 
 export default {
-    getAdvertisements: () => {
-        const promise = new Promise((resolve, reject) => {
-            fetch(url).then(response => response.json()).then(data => {
-                resolve(data)
-            })
-        });
-        return promise
+    getAdvertisements: async () => {
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = response.json();
+            return data;
+
+        } else {
+            throw new Error(`HTTP Error: ${response.status}`)
+        }
     }
 };

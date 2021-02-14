@@ -2,7 +2,7 @@
 import { adsView } from "./views.js";
 import dataService  from "./services/DataService.js"
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', async (event) => {
     const loader = document.querySelector('.lds-ring');
     loader.classList.add('hidden');
 
@@ -18,8 +18,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
     };
 
     const avisarDelError = (error) => {
-        console.log('NO SE HAN PODIDO CARGAR LOS ANUNCIOS');
+        console.log('NO SE HAN PODIDO CARGAR LOS ANUNCIOS', error);
     };
 
-    dataService.getAdvertisements().then(cargarAdvertisements).catch(avisarDelError)
+    //dataService.getAdvertisements().then(cargarAdvertisements).catch(avisarDelError)
+    try {
+        const advertisements = await dataService.getAdvertisements();
+        cargarAdvertisements(advertisements);
+    } catch (error) {
+        avisarDelError(error);
+    }
 });
