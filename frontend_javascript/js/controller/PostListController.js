@@ -13,15 +13,16 @@ export default class AdsListController extends BaseController {
     }
 
     async loadAds() {
-        this.loader.showLoading();
+        this.publish(this.event.START_LOADING, {});
         try {
             const advertisements = await dataService.getAdvertisements();
             this.render(advertisements);
         } catch (error) {
             console.error(error);
+            this.publish(this.event.ERROR, error);
         } finally {
             // se ejecuta siempre
-            this.loader.hideLoading();
+            this.publish(this.event.FINISH_LOADING, {});
         }
     }
 }

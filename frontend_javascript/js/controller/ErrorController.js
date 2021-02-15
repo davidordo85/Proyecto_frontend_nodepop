@@ -4,6 +4,14 @@ import { errorView } from '../views.js';
 
 export default class ErrorController extends BaseController {
 
+    constructor(element) {
+        super(element);
+        this.subscribe(this.event.ERROR, (error) => {
+            this.showError(error);
+        })
+    }
+
+
     showError(errorMessage) {
         this.element.innerHTML = errorView(errorMessage);
         this.element.classList.remove('hidden');
