@@ -20,7 +20,7 @@ export default class RegisterFormController extends BaseController {
             this.publish(this.event.START_LOADING);
             try {
                 const data = await dataService.registerUser(user);
-                console.log('USUARIO CREADO!', data)
+                alert('Usuario creado con éxito')
                 //this.render(advertisements);
             } catch (error) {
                 this.publish(this.event.ERROR, error);

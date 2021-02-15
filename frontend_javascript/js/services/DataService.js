@@ -7,7 +7,7 @@ export default {
         const url = `${BASE_URL}/api/posts`;
         const response = await fetch(url);
         if (response.ok) {
-            const data = response.json();
+            const data = await response.json();
             return data;
 
         } else {
@@ -23,11 +23,13 @@ export default {
         }
         const url = `${BASE_URL}/auth/register`;
         const response = await fetch(url, config);
-        const data = response.json(); // respuesta del servidor sea OK o sea ERROR.
+        const data = await response.json(); // respuesta del servidor sea OK o sea ERROR.
         if (response.ok) {
             return data;
         } else {
-            throw new Error(data);
+            // TODO: mejorar gestion de errores
+            // si tiene data.message devuelve el mensaje si no devuelve undefined
+            throw new Error(data.message || JSON.stringify(data));
         }
     }
 };
