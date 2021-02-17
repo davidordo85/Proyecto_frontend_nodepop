@@ -9,7 +9,7 @@ export default class RegisterFormController extends BaseController {
         super(element);
         this.attachEventListener();
     }
-
+    
     attachEventListener() {
         this.element.addEventListener('submit', async (event) => {
             event.preventDefault(); // evita que se envie el formulario (por defecto)
@@ -21,6 +21,7 @@ export default class RegisterFormController extends BaseController {
             try {
                 const data = await dataService.registerUser(user);
                 alert('Usuario creado con éxito')
+                window.location.href = "/login.html"; // envía al usuario a la página de login
                 //this.render(advertisements);
             } catch (error) {
                 this.publish(this.event.ERROR, error);
