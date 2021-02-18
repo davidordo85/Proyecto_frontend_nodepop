@@ -9,6 +9,12 @@ export default class RegisterFormController extends BaseController {
         super(element);
         this.attachEventListener();
     }
+
+    async makePost (user) {
+        await dataService.registerUser(user);
+        alert('Usuario creado con éxito!');
+        window.location.href = '/login.html';
+    }
     
     attachEventListener() {
         this.element.addEventListener('submit', async (event) => {
@@ -19,10 +25,7 @@ export default class RegisterFormController extends BaseController {
             };
             this.publish(this.event.START_LOADING);
             try {
-                const data = await dataService.registerUser(user);
-                alert('Usuario creado con éxito')
-                window.location.href = "/login.html"; // envía al usuario a la página de login
-                //this.render(advertisements);
+                await this.makePost(user)
             } catch (error) {
                 this.publish(this.event.ERROR, error);
             } finally {
