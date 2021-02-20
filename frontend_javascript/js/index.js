@@ -18,5 +18,5 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     // mensaje de error
     const errorsElement = document.querySelector(".global-errors");
     const errorController = new ErrorController(errorsElement);
-    errorController.showError("germeeeeeen!");
+    // errorController.showError("germeeeeeen!");
 });

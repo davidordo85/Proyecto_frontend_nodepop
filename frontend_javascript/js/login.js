@@ -1,5 +1,6 @@
 import LoaderController from './controller/LoaderController.js'
 import ErrorController from "./controller/ErrorController.js";
+import LoginFormController from './controller/LoginForController.js';
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -12,5 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const errorsElement = document.querySelector(".global-errors");
     const errorController = new ErrorController(errorsElement);
 
+    // login
+    const formElement = document.querySelector('form');
+    const loginController = new LoginFormController(formElement);
 
 });
