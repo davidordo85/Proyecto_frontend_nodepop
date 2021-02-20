@@ -5,11 +5,17 @@ const TOKEN_KEY = 'token'
 
 export default {
     getAdvertisements: async function() {
-        const url = `${BASE_URL}/api/posts`;
+        const url = `${BASE_URL}/api/messages?_expand=user`;
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            return data;
+            return data.map(tweet => {
+                return {
+                    message: tweet.message, 
+                    date: tweet.createdAt,
+                    author: tweet.user.username
+                }
+            });
 
         } else {
             throw new Error(`HTTP Error: ${response.status}`)
@@ -49,5 +55,10 @@ export default {
 
     getToken: async function() {
         return localStorage.getItem(TOKEN_KEY);
+    },
+
+    isUserLogged: async function() {
+        const token = await this.getToken();
+        return token !== null; // devuelve true o false
     }
 };

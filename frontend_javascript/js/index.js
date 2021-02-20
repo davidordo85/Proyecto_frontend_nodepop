@@ -2,6 +2,7 @@
 import PostListController from "./controller/PostListController.js";
 import LoaderController from "./controller/LoaderController.js";
 import ErrorController from "./controller/ErrorController.js";
+import NewTweetOrLoginController from "./controller/NewTweetOrLoginController.js";
 
 
 window.addEventListener("DOMContentLoaded", async (event) => {
@@ -18,5 +19,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     // mensaje de error
     const errorsElement = document.querySelector(".global-errors");
     const errorController = new ErrorController(errorsElement);
-    // errorController.showError("germeeeeeen!");
+
+    // botones en el login
+    const newTweetButtons = document.querySelector('.new-tweet');
+    const buttonsController = new NewTweetOrLoginController(newTweetButtons);
 });

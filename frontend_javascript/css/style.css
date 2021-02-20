@@ -53,3 +53,11 @@
 .global-errors {
   padding: 20% 10%;
 }
+
+
+/* new tweets or login */
+.new-tweet {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
